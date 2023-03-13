@@ -1,0 +1,26 @@
+<mat-card class="add-category">
+    <mat-card-header>
+        <mat-card-title>Add New Category</mat-card-title>
+        <mat-card-subtitle>{{msg}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+        <form [formGroup]="categoryForm">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Category</mat-label>
+                <input matInput formControlName="category">
+                <mat-error>Error</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Sub-Category</mat-label>
+                <input matInput formControlName="subcategory">
+                <mat-error>Error</mat-error>
+            </mat-form-field>
+        </form>
+
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="addNewCategory()">ADD</button>
+    </mat-card-actions>
+</mat-card>

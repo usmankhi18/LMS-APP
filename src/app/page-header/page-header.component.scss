@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  z-index: 3;
+}
+
+.image       { width: 30px; height: 30px; }
+.clip-circle { clip-path: circle(15px at center); }
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    span {
+      margin-right: 0.5rem;
+    }
+    mat-icon {
+      transform: scale(1.4);
+    }
+  }
+}

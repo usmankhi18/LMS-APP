@@ -1,0 +1,36 @@
+<h1>Login</h1>
+
+<h2>{{responseMsg}}</h2>
+
+<mat-grid-list cols="2" rowHeight="100px" gutterSize="10px" [formGroup]="loginForm">
+
+    <mat-grid-tile colspan="2">
+        <mat-form-field appearance="fill" color="accent">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="this.Email.invalid">{{getEmailErrors()}}</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="2">
+        <mat-form-field appearance="fill" color="accent">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="this.Password.invalid">{{getPasswordErrors()}}</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="2" class="login">
+        <button mat-flat-button color="accent" class="login-btn" [disabled]="loginForm.invalid"
+                (click)="login()">Login</button>
+    </mat-grid-tile>
+
+</mat-grid-list>
+
+<div class="login-link">
+    <span>Don't have an account?</span>
+    <button mat-stroked-button color="accent" routerLink="/register">Create Account</button>
+</div>

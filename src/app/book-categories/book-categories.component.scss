@@ -1,0 +1,13 @@
+.available-categories {
+  width: 500px;
+  height: max-content;
+  .category-tree-invisible {
+    display: none;
+  }
+  .mat-nested-tree-node div[role="group"] {
+    padding-left: 40px;
+  }
+  div[role="group"] > .mat-tree-node {
+    padding-left: 40px;
+  }
+}

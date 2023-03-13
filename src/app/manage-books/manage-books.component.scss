@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  width: 80%;
+  gap: 2rem;
+  margin: 3rem auto;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.add {
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-start;
+
+    button {
+      width: 200px;
+      height: 50px;
+    }
+  }
+}
+
+.delete {
+  mat-card-content {
+    margin: 0;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  mat-card-actions {
+    button {
+      width: 100%;
+    }
+  }
+}

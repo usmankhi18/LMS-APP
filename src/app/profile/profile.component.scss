@@ -1,0 +1,40 @@
+@import "../../theme.scss";
+
+:host {
+  display: block;
+  width: max-content;
+  margin: 3rem auto 0;
+}
+
+.image       { width: 200px; height: 200px; }
+.clip-circle { clip-path: circle(100px at center); }
+
+mat-card {
+  mat-card-title {
+    h1 {
+      letter-spacing: 2px;
+      font-weight: bold;
+      color: $light-accent-400;
+    }
+  }
+  mat-card-content {
+    table {
+      width: 100%;
+
+      .mat-mdc-row {
+        &:hover {
+          background-color: rgba($color: #ffffff, $alpha: 0.1);
+        }
+      }
+
+      .mat-column-name {
+        border-right: 1px solid $light-accent-400;
+      }
+
+      .mat-mdc-cell {
+        padding: 1rem;
+        font-size: 1.3rem;
+      }
+    }
+  }
+}

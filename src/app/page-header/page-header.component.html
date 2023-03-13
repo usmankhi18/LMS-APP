@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="menuClicked.emit()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <h1>LIBRARY MANAGEMENT SYSTEM</h1>
+
+    <div class="user-info">
+        <span>
+            Hi,
+            {{this.api.getTokenUserInfo()?.firstName | titlecase}}
+        </span>
+        <button mat-icon-button [matMenuTriggerFor]="userMenu">
+            <img src={{this.api.getTokenUserInfo()?.logoPath}} onerror="this.onerror=null; this.src='https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png'" class="image clip-circle">
+        </button>
+    </div>
+
+    <mat-menu #userMenu="matMenu">
+        <button mat-menu-item routerLink="/login">
+            <mat-icon>login</mat-icon>
+            <span>Login</span>
+        </button>
+        <button mat-menu-item routerLink="/users/profile">
+            <mat-icon>account_box</mat-icon>
+            <span>Profile</span>
+        </button>
+        <button mat-menu-item (click)="logOut()">
+            <mat-icon>logout</mat-icon>
+            <span>Log Out</span>
+        </button>
+    </mat-menu>
+</mat-toolbar>

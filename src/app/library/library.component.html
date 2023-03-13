@@ -1,0 +1,77 @@
+<mat-form-field appearance="outline" color="accent">
+    <mat-label>Search Books</mat-label>
+    <input matInput (input)="search(searchField.value)" #searchField>
+    <button mat-icon-button matSuffix>
+        <mat-icon>search</mat-icon>
+    </button>
+</mat-form-field>
+
+<mat-card>
+    <mat-card-content>
+        <div>
+            Showing results for {{getBookCount()}} books
+        </div>
+        <div *ngIf="isBlocked()">
+            You are Blocked, so you cannot order.
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-accordion multi="true">
+    <mat-expansion-panel expanded *ngFor="let list of booksToDisplay">
+        <mat-expansion-panel-header>
+            <mat-panel-title>{{list.category | titlecase}}</mat-panel-title>
+            <mat-panel-description>{{list.subCategory | titlecase}}</mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <table mat-table [dataSource]="list.books">
+
+            <!-- Id Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <!-- Book Title Column -->
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef> Book Title </th>
+                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+            </ng-container>
+
+            <!-- Author Column -->
+            <ng-container matColumnDef="author">
+                <th mat-header-cell *matHeaderCellDef> Book Author </th>
+                <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+            </ng-container>
+
+            <!-- Price Column -->
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Price </th>
+                <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+            </ng-container>
+
+            <!-- Available Column -->
+            <ng-container matColumnDef="available">
+                <th mat-header-cell *matHeaderCellDef> Availablity </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.available ? "Available" : "Not Available"}}
+                </td>
+            </ng-container>
+
+            <!-- Order Column -->
+            <ng-container matColumnDef="order">
+                <th mat-header-cell *matHeaderCellDef> Order </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button color="accent"
+                            [disabled]="!element.available || isBlocked()"
+                            (click)="orderBook(element)">
+                        Order
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-expansion-panel>
+</mat-accordion>

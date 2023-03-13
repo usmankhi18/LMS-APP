@@ -1,0 +1,62 @@
+<mat-card class="add">
+    <mat-card-header>
+        <mat-card-title>Add New Book</mat-card-title>
+        <mat-card-subtitle>{{addMsg}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="addBookForm">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Book Title</mat-label>
+                <input matInput formControlName="title">
+                <mat-error *ngIf="this.Title.invalid">Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Book Category</mat-label>
+                <input matInput formControlName="category">
+                <mat-error *ngIf="this.Category.invalid">Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Book Sub-Category</mat-label>
+                <input matInput formControlName="subcategory">
+                <mat-error *ngIf="this.Subcategory.invalid">Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Book Author</mat-label>
+                <input matInput formControlName="author">
+                <mat-error *ngIf="this.Author.invalid">Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Price</mat-label>
+                <input matInput formControlName="price">
+                <mat-error *ngIf="this.Price.invalid">Required</mat-error>
+            </mat-form-field>
+
+            <button mat-flat-button color="accent" [disabled]="this.addBookForm.invalid"
+                    (click)="insertBook()">ADD</button>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="delete">
+    <mat-card-header>
+        <mat-card-title>Delete Existing Book</mat-card-title>
+        <mat-card-subtitle>{{delMsg}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form>
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Book Id</mat-label>
+                <input matInput [formControl]="deleteBookForm">
+                <mat-error *ngIf="this.deleteBookForm.invalid">Required</mat-error>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-flat-button color="warn" [disabled]="this.deleteBookForm.invalid"
+                (click)="deleteBook()">Delete</button>
+    </mat-card-actions>
+</mat-card>
