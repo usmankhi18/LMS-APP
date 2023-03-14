@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
 import { LmsApiService } from '../services/lmsapi.service';
 
 @Component({
@@ -13,17 +13,18 @@ export class ManageCategoriesComponent {
 
   constructor(private fb: FormBuilder, private api: LmsApiService) {
     this.categoryForm = this.fb.group({
-      category: this.fb.control(''),
-      subcategory: this.fb.control(''),
+      category: fb.control('', [Validators.required]),
     });
   }
 
   addNewCategory() {
     let c = this.Category.value;
-    let s = this.Subcategory.value;
+    let user = this.api.getTokenUserInfo();
+    let u:number = user?.id!; 
 
-    this.api.insertCategory(c, s).subscribe({
+    this.api.insertCategory(c, u).subscribe({
       next: (res: any) => {
+        console.log(res);
         this.msg = res.toString();
         setInterval(() => (this.msg = ''), 5000);
       },
@@ -36,7 +37,9 @@ export class ManageCategoriesComponent {
   get Category(): FormControl {
     return this.categoryForm.get('category') as FormControl;
   }
-  get Subcategory(): FormControl {
-    return this.categoryForm.get('subcategory') as FormControl;
+
+  getCategoryErrors() {
+    if (this.Category.hasError('required')) return 'Field is requied!';
+    return '';
   }
 }

@@ -123,7 +123,7 @@ export class LmsApiService {
   }
 
   getCategories() {
-    return this.http.get<Category[]>(this.baseUrl + 'Library/GetAllCategories');
+    return this.http.get<Category[]>(this.baseUrl + 'Category/GetAllCategories');
   }
 
   insertBook(book: any) {
@@ -138,10 +138,10 @@ export class LmsApiService {
     });
   }
 
-  insertCategory(category: string, subcategory: string) {
+  insertCategory(category: string, userid: number) {
     return this.http.post(
-      this.baseUrl + 'Library/InsertCategory',
-      { category: category, subCategory: subcategory },
+      this.baseUrl + 'Category/InsertCategory',
+      { name: category, userId: userid },
       { responseType: 'text' }
     );
   }
